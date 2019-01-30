@@ -41,7 +41,7 @@ class Shelf extends Component {
     const shelfScrollLeft = value(0, v => shelfStyler.set('scrollLeft', v));
 
     // Add the listener to mousedown/touchstart event
-    this.mouseDownListener = listen(this.shelf.current, 'mousedown touchstart').start(() => {
+    this.mouseDownListener = listen(this.shelf.current, 'mousedown').start(() => {
       // A pointer will get the current scrollLeft as X
       pointer({ x: -this.shelf.current.scrollLeft })
       .pipe(({ x }) => {
@@ -55,7 +55,7 @@ class Shelf extends Component {
       .start(shelfScrollLeft);
     });
 
-    this.mouseUpListener = listen(document, 'mouseup touchend').start(() => {
+    this.mouseUpListener = listen(document, 'mouseup').start(() => {
       this.shelf.current.classList.remove('cursor-grabbing');
       this.lastX = this.shelf.current.scrollLeft
       if (this.mounted) this.setState({panning: false})
