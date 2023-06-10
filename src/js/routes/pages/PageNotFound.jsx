@@ -1,4 +1,4 @@
-import { Illustration404 } from "../../components/illustrations/Illustration404";
+import { Illustration404 } from "../../components/Illustrations/Illustration404";
 export function PageNotFound() {
   return (
     <>
