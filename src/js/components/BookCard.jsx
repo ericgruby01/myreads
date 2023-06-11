@@ -26,7 +26,7 @@ export function BookCard({ book, showShelfTag }) {
         <div className="book-card-image-holder">
           <Link to={`/book/${book.id}`} className="block w-auto max-h-44 m-auto drop-shadow-2xl">
             <Cover
-              className="w-auto max-h-44"
+              imgClassName="w-auto max-h-44"
               src={book?.imageLinks?.thumbnail}
               alt={book.title}
               title={book.title}
