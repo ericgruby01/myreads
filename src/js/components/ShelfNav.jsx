@@ -14,7 +14,7 @@ export function ShelfNav({ activeTab, onChange }) {
         )}
         onClick={() => onChange(shelf)}
       >
-        <Icon icon={icon}/> {label}
+        <span className="block sm:inline-block"><Icon icon={icon}/></span> {label}
       </span>
     ))}
   </div>
