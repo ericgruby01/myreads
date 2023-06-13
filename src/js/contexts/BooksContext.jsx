@@ -28,6 +28,20 @@ export default function ({ children }) {
     }, false);
   };
 
+  const isThisBookInState = (id) => {
+    const isInMyBooks = myBooks.find((book) => book.id === id);
+    if (isInMyBooks) {
+      return isInMyBooks;
+    }
+
+    const isInSearchResults = searchResults.find((book) => book.id === id);
+    if (isInSearchResults) {
+      return isInSearchResults;
+    }
+
+    return false;
+  };
+
   const putBookOnShelf = (book, shelf) => {
     update(book, shelf).then(setShelves);
     setMyBooks((books) =>
@@ -50,6 +64,7 @@ export default function ({ children }) {
     putBookOnShelf,
     updateState,
     isThisBookOnAShelf,
+    isThisBookInState,
     searchResults,
   };
 

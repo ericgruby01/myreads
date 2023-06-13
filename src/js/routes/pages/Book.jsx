@@ -16,25 +16,36 @@ export function Book() {
 
   const { id } = useParams();
 
-  const { get, getState, putBookOnShelf, updateState, isThisBookOnAShelf } = useBooks();
+  const { get, getState, putBookOnShelf, updateState, isThisBookInState, isThisBookOnAShelf } =
+    useBooks();
 
   const onMove = (shelf) => {
     putBookOnShelf(book, shelf);
   };
 
   useEffect(() => {
-    if (id) {
+    const verifyBook = () => {
+      if (!id) {
+        return false;
+      }
+      const checkState = isThisBookInState(id);
+      if (checkState) {
+        setBook(checkState);
+        setNotFound(false);
+        return;
+      }
       setNotFound(false);
       get(id)
         .then(setBook)
         .catch(() => setNotFound(true));
-    }
+    };
+    verifyBook();
   }, [id]);
 
   if (notFound) {
     return (
       <DisplayWithImage ImageComponent={DataNotFound}>
-        The book you're searching doesn't exist. Try using the search.
+        There's no book matching with the ID you're looking for. Try using the search.
       </DisplayWithImage>
     );
   }
