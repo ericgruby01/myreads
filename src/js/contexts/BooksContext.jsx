@@ -80,9 +80,6 @@ export default function ({ children }) {
     if (debouncedSearchTerm && !searchState.isLoading) {
       setPrevSearchTerm(debouncedSearchTerm);
       search(debouncedSearchTerm).then(setSearchResults);
-    } else {
-      setPrevSearchTerm("");
-      setSearchResults([]);
     }
   }, [debouncedSearchTerm]);
 
